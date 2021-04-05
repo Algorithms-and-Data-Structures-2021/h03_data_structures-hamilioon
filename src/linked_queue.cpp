@@ -6,17 +6,52 @@ namespace itis {
 
 void LinkedQueue::Enqueue(Element e) {
   // TODO: напишите здесь свой код ...
+    if (size_ == 0){
+        SinglyNode *new_el = new SinglyNode(e, nullptr);
+        back_ = new_el;
+        front_ = new_el;
+        size_++;
+    }
+    else {
+        SinglyNode *new_el = new SinglyNode(e, nullptr);
+        back_->next = new_el;
+        back_ = new_el;
+        size_++;
+    }
 }
 
 void LinkedQueue::Dequeue() {
   if (size_ == 0) {
     throw std::logic_error("could not dequeue from empty queue");
   }
+    if (size_ == 1){
+        delete front_;
+        front_ = nullptr;
+        back_ = nullptr;
+        size_--;
+    }
+    else if (size_ > 1){
+
+        SinglyNode *new_head = front_->next;
+        delete front_;
+        front_ = new_head;
+        size_--;
+    }
 
   // TODO: напишите здесь свой код ...
 }
 
 void LinkedQueue::Clear() {
+    SinglyNode *pointer = front_;
+    SinglyNode *next_pointer;
+    while (pointer != back_){
+        next_pointer = pointer->next;
+        delete pointer;
+        pointer = next_pointer;
+    }
+    size_ = 0;
+    back_ = nullptr;
+    front_ = nullptr;
   // TODO: напишите здесь свой код ...
 }
 
