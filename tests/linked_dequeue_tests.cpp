@@ -167,7 +167,7 @@ SCENARIO("dequeue back linked deque") {
     CAPTURE(elements);
 
     WHEN("dequeing elements from the back") {
-      const int num_elements = GENERATE_COPY(range(0, queue_size)) + 1;
+       const int num_elements = GENERATE_COPY(range(0, queue_size)) + 1;
 
       CAPTURE(queue_size, num_elements);
 
